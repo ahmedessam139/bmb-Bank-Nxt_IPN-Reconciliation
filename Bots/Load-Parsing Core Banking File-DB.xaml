@@ -151,7 +151,6 @@
                 <Sequence sap:VirtualizedContainerService.HintSize="486,1412" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:Int32" Name="CurrentTrx" />
-                    <Variable x:TypeArguments="x:String" Name="in_ConnectionString" />
                     <Variable x:TypeArguments="ui:DatabaseConnection" Name="DBConnection" />
                     <Variable x:TypeArguments="sd:DataTable" Name="dt_CoreBankingTrx" />
                     <Variable x:TypeArguments="sd:DataTable" Name="dt_TransactionData" />
@@ -163,7 +162,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Process: &quot;+ CurrentFile.Name]" />
                   <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[dt_CoreBankingTrx]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="452,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[CurrentFile.FullName]" />
-                  <ui:DatabaseConnect DisplayName="Connect to Database" sap:VirtualizedContainerService.HintSize="452,92" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="Data Source=EGLAESSAM;Integrated Security=True;Encrypt=False" DatabaseConnection="[DBConnection]" />
+                  <ui:DatabaseConnect DisplayName="Connect to Database" sap:VirtualizedContainerService.HintSize="452,92" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="[in_DBConnectionString]" DatabaseConnection="[DBConnection]" />
                   <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[CurrentTrx]" DataTable="[dt_CoreBankingTrx]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="452,566" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                     <ui:ForEachRow.Body>
                       <ActivityAction x:TypeArguments="sd:DataRow">
