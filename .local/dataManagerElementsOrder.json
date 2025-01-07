@@ -133,7 +133,7 @@
         "variable1&Sequence_4"
       ],
       "ArgumentsSectionElementsOrder": [
-        "in_ConnectionString",
+        "in_DBConnectionString",
         "in_FailedFolder",
         "in_ProcessedFolder",
         "in_UnprocessedFolder"
@@ -150,7 +150,6 @@
         "str_CurrentFileFullText&Sequence_2",
         "strArr_Lines&Sequence_2",
         "CurrentTrx&Sequence_3",
-        "in_ConnectionString&Sequence_3",
         "DBConnection&Sequence_3"
       ],
       "ArgumentsSectionElementsOrder": [
