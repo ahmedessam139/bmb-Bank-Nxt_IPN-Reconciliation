@@ -184,6 +184,7 @@
       "Path": "Bots/Reconciliation Logic.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "dt_TransactionCount&Sequence_9",
         "dt_ReconciliationMapping&Sequence_1",
         "str_TransactionKey&Sequence_1",
         "str_TransactionValue&Sequence_1",
