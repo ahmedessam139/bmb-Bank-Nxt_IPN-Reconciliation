@@ -105,7 +105,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get_IPN_File" sap:VirtualizedContainerService.HintSize="1036,1489" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get_IPN_File" sap:VirtualizedContainerService.HintSize="1036,1610" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_SFTPusername" />
       <Variable x:TypeArguments="x:String" Name="str_SFTPFilePath" />
@@ -146,6 +146,13 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
 ".txt"]</InArgument>
       </Assign.Value>
     </Assign>
+    <Sequence DisplayName="Check File if processed before " sap:VirtualizedContainerService.HintSize="518,121" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Sequence>
     <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="IPNReconciliation_SFTPCredentials" CacheStrategy="None" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="518,175" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[str_SFTPpassWord]" Username="[str_SFTPusername]" />
     <osa:SFTPScope ContinueOnError="{x:Null}" DisplayName="SFTP Scope" sap:VirtualizedContainerService.HintSize="518,888" Host="[in_SFTPHost]" sap2010:WorkflowViewState.IdRef="SFTPScope_2" Password="DfNqxV4?;Ar(i&lt;)" Port="[cInt(in_SFTPPort)]" UserName="[str_SFTPusername]">
       <osa:SFTPScope.Body>
@@ -168,7 +175,7 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <osa:DownloadFile ContinueOnError="{x:Null}" Result="{x:Null}" DisplayName="Download File" sap:VirtualizedContainerService.HintSize="382,156" sap2010:WorkflowViewState.IdRef="DownloadFile_1" LocalFilePath="[in_UnprocessedFolder+&quot;\&quot;+&#xD;&#xA;&quot;Transaction-&quot;+&#xD;&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xD;&#xA;&quot;A&quot;+&#xD;&#xA;&quot;.txt&quot;]" RemoteFilePath="[str_SFTPFilePath]" />
+                  <osa:DownloadFile ContinueOnError="{x:Null}" Result="{x:Null}" DisplayName="Download File" sap:VirtualizedContainerService.HintSize="382,156" sap2010:WorkflowViewState.IdRef="DownloadFile_1" LocalFilePath="[in_UnprocessedFolder+&quot;\&quot;+&#xA;&quot;Transaction-&quot;+&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xA;&quot;A&quot;+&#xA;&quot;.txt&quot;]" RemoteFilePath="[str_SFTPFilePath]" />
                 </Sequence>
               </If.Then>
               <If.Else>
