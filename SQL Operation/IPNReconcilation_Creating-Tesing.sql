@@ -235,12 +235,16 @@ WITH RankedTransactions AS (
         ipn.TransactionId AS IPNTransactionId,
         ipn.InterchangeAmountAction AS IPNInterchangeAmountAction,
         cb.PartyType AS CoreBankingPartyType,
+		cb.StatusDescription AS CoreBankingStatusDescription,
         cb.StatusCode AS CoreBankingStatusCode,
         ipn.Result AS IPNResult,
+		ipn.ResponseCode AS IPNResponseCode,
         cb.TransactionAmount AS CoreBankingTransactionAmount,
         ipn.TransactionAmount AS IPNTransactionAmount,
         cb.DateTime AS CoreBankingValueDateTime,
         ipn.SwitchDate AS IPNSwitchDate,
+		ipn.SourceFileName AS IPNSourceFileName,
+		cb.SourceFileName AS CoreBankingSourceFileName,
         ipn.TransactionTimeStamp AS IPNTransactionTimeStamp,
         ROW_NUMBER() OVER (
             PARTITION BY ipn.TransactionId
@@ -258,11 +262,15 @@ SELECT
     IPNInterchangeAmountAction,
     CoreBankingPartyType,
     CoreBankingStatusCode,
+	CoreBankingStatusDescription,
     IPNResult,
+	IPNResponseCode,
     CoreBankingTransactionAmount,
     IPNTransactionAmount,
     CoreBankingValueDateTime,
     IPNSwitchDate,
+	IPNSourceFileName,
+	CoreBankingSourceFileName,
     IPNTransactionTimeStamp
 FROM 
     RankedTransactions
@@ -276,8 +284,10 @@ CREATE TABLE [UiPath Processes Data].[dbo].[IPNReconciliation_ReconciliationResu
     IPNTransactionId NVARCHAR(36) NOT NULL,
     IPNInterchangeAmountAction NVARCHAR(6),
 	CoreBankingPartyType NVARCHAR(10),
+	CoreBankingStatusDescription NVARCHAR(100),
     CoreBankingStatusCode NVARCHAR(10),
     IPNResult NVARCHAR(15),
+	IPNResponseCode NVARCHAR(10),
     CoreBankingTransactionAmount NVARCHAR(18),
     IPNTransactionAmount NVARCHAR(18),
     CoreBankingValueDate NVARCHAR(10),
@@ -287,6 +297,8 @@ CREATE TABLE [UiPath Processes Data].[dbo].[IPNReconciliation_ReconciliationResu
     ReconciliationResult NVARCHAR(100),
     ReconciliationNote NVARCHAR(256),
     ReconciliationDate DATETIME DEFAULT GETDATE(),
+	IPNSourceFileName NVARCHAR(255),
+	CoreBankingSourceFileName  NVARCHAR(255)
     CONSTRAINT [PK_IPNReconciliation_ReconciliationResultsTransactions] PRIMARY KEY CLUSTERED (Id ASC)
 );
 
@@ -431,3 +443,5 @@ FROM
     RankedTransactions
 WHERE 
     RowNum = 1;
+
+

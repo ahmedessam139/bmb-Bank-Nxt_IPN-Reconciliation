@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Get_IPN_File" this:Get_IPN_File.in_UnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Reconciliation\IPNFiles\Unprocessed" this:Get_IPN_File.in_ProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Reconciliation\IPNFiles\Processed" this:Get_IPN_File.in_SFTPHost="localhost" this:Get_IPN_File.in_SFTPPort="22" this:Get_IPN_File.in_WorkingDate="[Today.ToString(&quot;yyyy-MM-dd&quot;)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:os="clr-namespace:Omega.SftpClient;assembly=Omega.SftpClient" xmlns:osa="clr-namespace:Omega.SftpClient.Activities;assembly=Omega.SftpClient.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_IPN_File" this:Get_IPN_File.in_UnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Reconciliation\IPNFiles\Unprocessed" this:Get_IPN_File.in_ProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Reconciliation\IPNFiles\Processed" this:Get_IPN_File.in_SFTPHost="localhost" this:Get_IPN_File.in_SFTPPort="22" this:Get_IPN_File.in_WorkingDate="[Today.ToString(&quot;yyyy-MM-dd&quot;)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:os="clr-namespace:Omega.SftpClient;assembly=Omega.SftpClient" xmlns:osa="clr-namespace:Omega.SftpClient.Activities;assembly=Omega.SftpClient.Activities" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_UnprocessedFolder" Type="InArgument(x:String)" />
     <x:Property Name="in_ProcessedFolder" Type="InArgument(x:String)" />
@@ -45,6 +45,7 @@
       <x:String>System.Security</x:String>
       <x:String>System.Numerics</x:String>
       <x:String>System.Globalization</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -105,7 +106,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get_IPN_File" sap:VirtualizedContainerService.HintSize="1036,1610" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get_IPN_File" sap:VirtualizedContainerService.HintSize="1036,1921" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_SFTPusername" />
       <Variable x:TypeArguments="x:String" Name="str_SFTPFilePath" />
@@ -118,13 +119,21 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="518,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Get IPN File From SFTP&quot;]" />
-    <Assign sap:VirtualizedContainerService.HintSize="518,115" sap2010:WorkflowViewState.IdRef="Assign_3">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[str_SFTPFilePath]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">["Reconciliation\177\" &amp;
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="590,1898" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="552,1647" sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="518,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Get IPN File From SFTP&quot;]" />
+          <Assign sap:VirtualizedContainerService.HintSize="518,115" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_SFTPFilePath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">["Reconciliation\177\" &amp;
 DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy") &amp;
 "\" &amp;
 DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("MMMM")  &amp;
@@ -132,66 +141,84 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
 CInt(DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("dd"))&amp;
 "\"&amp; DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyyMMdd") &amp;
 "A"]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="518,115" sap2010:WorkflowViewState.IdRef="Assign_4">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[str_SFTPFilePath]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_SFTPFilePath + "\" +
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="518,115" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_SFTPFilePath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_SFTPFilePath + "\" +
 "Transaction-"+
 DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyyMMdd")+
 "A"+
 ".txt"]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Sequence DisplayName="Check File if processed before " sap:VirtualizedContainerService.HintSize="518,121" sap2010:WorkflowViewState.IdRef="Sequence_8">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </Sequence>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="IPNReconciliation_SFTPCredentials" CacheStrategy="None" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="518,175" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[str_SFTPpassWord]" Username="[str_SFTPusername]" />
-    <osa:SFTPScope ContinueOnError="{x:Null}" DisplayName="SFTP Scope" sap:VirtualizedContainerService.HintSize="518,888" Host="[in_SFTPHost]" sap2010:WorkflowViewState.IdRef="SFTPScope_2" Password="DfNqxV4?;Ar(i&lt;)" Port="[cInt(in_SFTPPort)]" UserName="[str_SFTPusername]">
-      <osa:SFTPScope.Body>
-        <ActivityAction x:TypeArguments="os:IObjectContainer">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="os:IObjectContainer" Name="ScopeActivity" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484,778" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            </Assign.Value>
+          </Assign>
+          <Sequence DisplayName="Check File if processed before " sap:VirtualizedContainerService.HintSize="518,121" sap2010:WorkflowViewState.IdRef="Sequence_8">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <osa:FileExist ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="450,117" sap2010:WorkflowViewState.IdRef="FileExist_1" RemoteFilePath="[str_SFTPFilePath]" Result="[bl_SFTPFileExist]" />
-            <If Condition="[bl_SFTPFileExist]" sap:VirtualizedContainerService.HintSize="450,601" sap2010:WorkflowViewState.IdRef="If_1">
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,216" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <osa:DownloadFile ContinueOnError="{x:Null}" Result="{x:Null}" DisplayName="Download File" sap:VirtualizedContainerService.HintSize="382,156" sap2010:WorkflowViewState.IdRef="DownloadFile_1" LocalFilePath="[in_UnprocessedFolder+&quot;\&quot;+&#xA;&quot;Transaction-&quot;+&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xA;&quot;A&quot;+&#xA;&quot;.txt&quot;]" RemoteFilePath="[str_SFTPFilePath]" />
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,224" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;File Is Not Exist: &quot;+str_SFTPFilePath]" />
-                </Sequence>
-              </If.Else>
-            </If>
           </Sequence>
-        </ActivityAction>
-      </osa:SFTPScope.Body>
-    </osa:SFTPScope>
+          <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="IPNReconciliation_SFTPCredentials" CacheStrategy="None" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="518,175" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[str_SFTPpassWord]" Username="[str_SFTPusername]" />
+          <osa:SFTPScope ContinueOnError="{x:Null}" DisplayName="SFTP Scope" sap:VirtualizedContainerService.HintSize="518,888" Host="[in_SFTPHost]" sap2010:WorkflowViewState.IdRef="SFTPScope_2" Password="DfNqxV4?;Ar(i&lt;)" Port="[cInt(in_SFTPPort)]" UserName="[str_SFTPusername]">
+            <osa:SFTPScope.Body>
+              <ActivityAction x:TypeArguments="os:IObjectContainer">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="os:IObjectContainer" Name="ScopeActivity" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484,778" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <osa:FileExist ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="450,117" sap2010:WorkflowViewState.IdRef="FileExist_1" RemoteFilePath="[str_SFTPFilePath]" Result="[bl_SFTPFileExist]" />
+                  <If Condition="[bl_SFTPFileExist]" sap:VirtualizedContainerService.HintSize="450,601" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,216" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <osa:DownloadFile ContinueOnError="{x:Null}" Result="{x:Null}" DisplayName="Download File" sap:VirtualizedContainerService.HintSize="382,156" sap2010:WorkflowViewState.IdRef="DownloadFile_1" LocalFilePath="[in_UnprocessedFolder+&quot;\&quot;+&#xA;&quot;Transaction-&quot;+&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xA;&quot;A&quot;+&#xA;&quot;.txt&quot;]" RemoteFilePath="[str_SFTPFilePath]" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,224" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;File Is Not Exist: &quot;+str_SFTPFilePath]" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </osa:SFTPScope.Body>
+          </osa:SFTPScope>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="556,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
   </Sequence>
 </Activity>
